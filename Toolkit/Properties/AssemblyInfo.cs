@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Transformer Toolkit")]
-[assembly: AssemblyDescription("A toolkit for the TF700T, TF300T, ME301T and the N5")]
+[assembly: AssemblyDescription("A toolkit for the TF700T, TF300T, TF300TG, ME301T and the N5")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Max Röhrl")]
 [assembly: AssemblyProduct("Transformer Toolkit")]
@@ -36,6 +36,6 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("4.1.1")]
-[assembly: AssemblyFileVersion("4.1.1")]
+[assembly: AssemblyVersion("4.1.2")]
+[assembly: AssemblyFileVersion("4.1.2")]
 [assembly: NeutralResourcesLanguage("en")]
