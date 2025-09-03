@@ -1,49 +1,41 @@
-﻿/*
- * Device.cs - Developed by Max Röhrl for Transformer Toolkit
- */
+using System.Reflection;
+using System.Resources;
+using System.Runtime.InteropServices;
 
-using System;
-using System.Linq;
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
 
-namespace Toolkit
-{
-    public class Device
-    {
-        /// <summary>
-        ///     Android version of the latest Asus firmware for TF700T/TF300T/ME301T
-        /// </summary>
-        private const string MinAndroidVersion = "4.2.1";
+[assembly: AssemblyTitle("Transformer Toolkit")]
+[assembly: AssemblyDescription("A toolkit for the TF700T, TF300T, TF300TG, ME301T and the N5")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("Max Röhrl")]
+[assembly: AssemblyProduct("Transformer Toolkit")]
+[assembly: AssemblyCopyright("Copyright © Max Röhrl  2016, Modified by Gustavs Goldbergs using Antropic Claude")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
-        /// <summary>
-        ///     List of supported devices
-        /// </summary>
-        private static readonly string[] SupportedDevices = { "tf700t", "tf300t", "me301t", "hammerhead", "hammerheadcaf" };
+// Setting ComVisible to false makes the types in this assembly not visible 
+// to COM components.  If you need to access a type in this assembly from 
+// COM, set the ComVisible attribute to true on that type.
 
-        public string SerialNumber { get; }
-        public string DeviceName { get; }
-        public string CodeName { get; }
-        public string AndroidVersion { get; }
-        public bool Supported { get; }
-        public bool OutdatedFirmware { get; }
-        public bool Rooted { get; }
+[assembly: ComVisible(false)]
 
-        public Device(string serialNumber, StartDialog startDialog)
-        {
-            SerialNumber = serialNumber;
-            DeviceName = Adb.GetBuildProperty("ro.product.model", this);
-            if (string.IsNullOrEmpty(DeviceName) || DeviceName.Contains("error"))
-            {
-                startDialog.ShowErrorMessageBox($"The informations about the connected device with the serial number \"{SerialNumber}\" "
-                    + "could not be fetched. Please follow the instructions to setup USB debugging.");
-                return;
-            }
-            CodeName = Adb.GetBuildProperty("ro.build.product", this).ToLower();
-            AndroidVersion = Adb.GetBuildProperty("ro.build.version.release", this);
-            Supported = SupportedDevices.Contains(CodeName);
-            OutdatedFirmware = Convert.ToInt32(AndroidVersion.Replace(".", string.Empty))
-                               < Convert.ToInt32(MinAndroidVersion.Replace(".", string.Empty));
-            var suOutput = Adb.ExecuteShellCommand("su -v", this);
-            Rooted = !(suOutput.Contains("not found") || suOutput.Contains("permission denied"));
-        }
-    }
-}
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+
+[assembly: Guid("873db6df-3368-406b-bc7b-08efa89658ca")]
+
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Build and Revision Numbers 
+// by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]
+
+[assembly: AssemblyVersion("4.1.2")]
+[assembly: AssemblyFileVersion("4.1.2")]
+[assembly: NeutralResourcesLanguage("en")]
